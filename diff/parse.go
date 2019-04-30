@@ -281,6 +281,7 @@ func (r *FileDiffReader) readOneFileHeader(prefix []byte) (filename string, time
 // of the next file while reading extended headers.
 type OverflowError string
 
+// Error is a function.
 func (e OverflowError) Error() string {
 	return fmt.Sprintf("overflowed into next file: %s", e)
 }
@@ -585,6 +586,7 @@ type ParseError struct {
 	Err    error // The actual error
 }
 
+// Error is a function.
 func (e *ParseError) Error() string {
 	return fmt.Sprintf("line %d, char %d: %s", e.Line, e.Offset, e.Err)
 }
@@ -599,6 +601,7 @@ type ErrBadHunkHeader struct {
 	header string
 }
 
+// Error is a function.
 func (e *ErrBadHunkHeader) Error() string {
 	if e.header == "" {
 		return "bad hunk header"
@@ -616,6 +619,7 @@ type ErrBadHunkLine struct {
 	Line []byte
 }
 
+// Error is a function.
 func (e *ErrBadHunkLine) Error() string {
 	m := "bad hunk line (does not start with ' ', '-', '+', or '\\')"
 	if len(e.Line) == 0 {
